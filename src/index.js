@@ -4,11 +4,39 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import from react-redux and redux
+import {legacy_createStore as createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+
+// create user reducer function
+const authReducer = (state = {}, action) =>{
+  switch(action.type){
+    case "LOGGED_IN_USER":
+      return {...state, ...action.payload}
+      case "LOGOUT":
+        return action.payload;
+      default:
+        return state;
+  }
+}
+
+// combine multiple reducer 
+const rootReducer = combineReducers({
+  user: authReducer,
+});
+
+// create redux store
+const store = createStore(rootReducer, composeWithDevTools());
+
+// provide redux store to the entire app
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>
 );
 
