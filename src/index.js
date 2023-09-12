@@ -5,26 +5,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import from react-redux and redux
-import {legacy_createStore as createStore, combineReducers} from 'redux';
+import {legacy_createStore as createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
-
-// create user reducer function
-const authReducer = (state = {name:"fin",age:"23"}, action) =>{
-  switch(action.type){
-    case "LOGGED_IN_USER" :
-      return {...state, ...action.payload}
-    case "LOGGED_OUT" :
-      return action.payload;
-    default :
-      return state;
-  }
-}
-
-// combine multiple reducer 
-const rootReducer = combineReducers({
-  user : authReducer,
-})
+import {rootReducer} from './resources/js/Reducers/Index';
 
 // create redux store
 const store = createStore(rootReducer, composeWithDevTools());

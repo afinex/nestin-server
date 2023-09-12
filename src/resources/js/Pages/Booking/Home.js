@@ -4,7 +4,7 @@ const Home = () =>{
 const {user} = useSelector((state)=>({...state}));
 
     return (
-        <div className="container-fluid p-5 h1">Home {JSON.stringify(user)}</div>
+        <div className="container-fluid p-5 h1 text-center">Home {JSON.stringify(user)}</div>
     )
 }
 
