@@ -1,9 +1,8 @@
 import express from 'express';
+import {page} from '../controller/showMessageController';
 
 const router = express.Router();
 
-router.get('/:message', (req, res)=>{
-    res.status(200).send(`Here is your message: ${req.params.message}`);
-})
+router.get('/:message', page)
 
 module.exports = router;
