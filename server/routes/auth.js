@@ -1,5 +1,5 @@
 import express from 'express';
-import {page} from '../controller/showMessageController';
+import {page} from '../controllers/showMessageController';
 
 const router = express.Router();
 
