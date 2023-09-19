@@ -1,8 +1,8 @@
 import express from 'express';
-import fs from 'fs';
+import {readdirSync} from 'fs';
 
 const app = express();
-fs.readdirSync('./routes').map((e_route)=>{
+readdirSync('./routes').map((e_route)=>{
     app.use('/api', require(`./routes/${e_route}`));
 });
 
