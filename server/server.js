@@ -8,12 +8,18 @@ require("dotenv").config();
 const app = express();
 
 //middleware
-mongoose.connect(process.env.DATABASE)
+mongoose.connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    // useFindAndModify: false,
+    useUnifiedTopology: false,
+    // useCreateIndex: true,
+})
 .then(()=> console.log(`Database connected`))
 .catch((e)=>console.log(`Error : ${e}`));
 
 app.use(cors());
 app.use(morgan("dev"));
+app.use(express.json());
 
 // route middleware
 readdirSync('./routes').map((e_route)=>{
