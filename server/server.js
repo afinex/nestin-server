@@ -14,7 +14,7 @@ mongoose.connect(process.env.DATABASE, {
     useUnifiedTopology: false,
     // useCreateIndex: true,
 })
-.then(()=> console.log(`Database connected`))
+.then(()=> console.log(`########## MongoDB Database connected ##########`))
 .catch((e)=>console.log(`Error : ${e}`));
 
 app.use(cors());
