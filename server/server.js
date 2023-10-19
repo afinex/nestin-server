@@ -14,8 +14,11 @@ mongoose.connect(process.env.DATABASE, {
     useUnifiedTopology: false,
     // useCreateIndex: true,
 })
-.then(()=> console.log(`########## MongoDB Database connected ##########`))
-.catch((e)=>console.log(`Error : ${e}`));
+.then(()=> console.log(`########## CONNECTED : MongoDB Database ##########`))
+.catch((e)=>{
+    console.log(`########## FAILED CONNECT : MongoDB Database ##########`)
+    console.log(`Error : ${e}`)
+});
 
 app.use(cors());
 app.use(morgan("dev"));
