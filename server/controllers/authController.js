@@ -1,4 +1,5 @@
 import Users from "../models/users";
+import jwt from "jsonwebtoken";
 const bcrypt = require("bcrypt");
 export const register = async(req, res) =>{
 
@@ -45,6 +46,17 @@ export const login = async (req, res) => {
         const isMatch = await userExists.comparePassword(password);
         if (isMatch) {
           console.log('Login successful');
+          let token = jwt.sign({_id : userExists.id}, process.env.JWT_KEY,{
+            expiresIn : '1d',
+          });
+
+          return res.json({token,
+            user:{
+              created_at: userExists.createdAt,
+              email: userExists.email,
+              password: userExists.password,
+              _id: userExists.id}
+          });
         } else {
           console.log('Password does not match');
           res.status(400).send('Password does not match');
