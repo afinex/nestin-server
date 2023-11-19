@@ -1,4 +1,4 @@
-import Users from "../models/users";
+import Users from "../../models/users";
 import jwt from "jsonwebtoken";
 const bcrypt = require("bcrypt");
 export const register = async(req, res) =>{
@@ -47,7 +47,7 @@ export const login = async (req, res) => {
         if (isMatch) {
           console.log('Login successful');
           let token = jwt.sign({_id : userExists.id}, process.env.JWT_KEY,{
-            expiresIn : '1d',
+            expiresIn : '7d',
           });
 
           return res.json({token,
